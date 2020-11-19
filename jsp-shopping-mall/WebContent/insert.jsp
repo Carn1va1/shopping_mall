@@ -8,7 +8,7 @@
 		<title>update_query Example</title>
 	</head>
 	<body>
-			<%
+			<% /*
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				
@@ -20,23 +20,23 @@
 				Statement insert_stmt=con.createStatement();
 				
 				
-				//랜덤 값 넣기
-				  	//for(int i=0; i<100; i++) {
-					//int COL1 = (int)(Math.random() * 100);
-					//int COL2 = (int)(Math.random() * 100);
-					//int COL3 = (int)(Math.random() * 100);
-					//int COL4 = (int)(Math.random() * 100);
+				랜덤 값 넣기
+				  	for(int i=0; i<100; i++) {
+					int COL1 = (int)(Math.random() * 100);
+					int COL2 = (int)(Math.random() * 100);
+					int COL3 = (int)(Math.random() * 100);
+					int COL4 = (int)(Math.random() * 100);
 					
-					//String insert_query = "INSERT INTO MORUGATSUYO(ID, COL1, COL2, COL3, COL4) VALUES(" + i + "," + COL1 + "," + COL2 + "," + COL3 + "," + COL4 + ")";
-					//System.out.println(insert_query);
+					String insert_query = "INSERT INTO MORUGATSUYO(ID, COL1, COL2, COL3, COL4) VALUES(" + i + "," + COL1 + "," + COL2 + "," + COL3 + "," + COL4 + ")";
+					System.out.println(insert_query);
 					
-					//insert_stmt.executeQuery(insert_query);
+					insert_stmt.executeQuery(insert_query);
 					
-				//}
+				}
 				
 				  	
 				// 평균
-				String select_query = "SELECT ID, COL1, COL2, COL3, COL4 FROM MORUGATSUYO WHERE AVG_COL IS NULL";
+				 String select_query = "SELECT ID, COL1, COL2, COL3, COL4 FROM MORUGATSUYO WHERE AVG_COL IS NULL";
 				ResultSet rs = select_stmt.executeQuery(select_query);
 				
 				while(rs.next()) {
@@ -57,8 +57,49 @@
 			}
 			catch(Exception e){
 				System.out.println(e);
-			}
+			} */
 			%>
-		
+			
+			<table border = "1">
+			<tr>
+				<td>ID</td>
+				<td>구매자명</td>
+				<td>구매금액</td>
+			</tr>
+		<%
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+	
+				Connection con=DriverManager.getConnection(
+				"jdbc:oracle:thin:@localhost:1521:xe","SMC_USER","SMC_USER");
+	
+				Statement stmt=con.createStatement();
+	
+				String query = "SELECT " +
+									" MEMBER.ID, MEMBER.NAME, PAYMENT_HISTORY.ORDER_PRICE " +
+								" FROM " +
+									" MEMBER, PAYMENT_HISTORY " +
+								" WHERE " +
+									" MEMBER.ID = PAYMENT_HISTORY.ID ";
+							
+				ResultSet rs=stmt.executeQuery(query);
+				
+				while(rs.next()) {
+					%><tr><%
+						%><td><%=rs.getInt("ID")%></td><%
+						%><td><%=rs.getString("NAME")%></td><%
+						%><td><%=rs.getInt("ORDER_PRICE")%></td><%
+					%></tr><%
+				}
+				
+				con.close();
+				}
+	
+				catch(Exception e) {
+					System.out.println(e);
+				}
+					%>
+		</table>
+			
 	</body>
 </html>
