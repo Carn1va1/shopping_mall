@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+header {
+	text-align: center;
+	background-color: #AAA;
+	margin: 0;
+	padding: 10px 0px;
+	width: 100;
+}
+
+footer {
+	text-align: center;
+	background-color: lightblue;
+	paddig: 5px 0px;
+}
+
+nav {
+	width: 100%;
+	background-color: lightgreen;
+	padding: 3px 0px;
+}
+
+nav > ul {
+	list-style: none;
+}
+
+nav > ul > li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+
