@@ -26,9 +26,7 @@
 	        			   " WHERE PAYMENT_HISTORY.PRODUCT_ID = PRODUCT.ID AND " + 
 	        			   " PRODUCT.ID = CATEGORY.ID " + 
 	        			   " GROUP BY " + 
-	        			   " CATEGORY.NAME " +
-	        			   " ORDER BY " + 
-	        			   " 카테고리명 DESC ";
+	        			   " CATEGORY.NAME ";
 	
 	        ResultSet rs=stmt.executeQuery(query);
 	        while(rs.next()) {
