@@ -25,9 +25,7 @@
 	        			   " FROM PRODUCT, PAYMENT_HISTORY " + 
 	        			   " WHERE PAYMENT_HISTORY.PRODUCT_ID = PRODUCT.ID " + 
 	        			   " GROUP BY " + 
-	        			   " PRODUCT.NAME " +
-	        			   " ORDER BY " + 
-	        			   " 상품명 DESC ";
+	        			   " PRODUCT.NAME ";
 	
 	        ResultSet rs=stmt.executeQuery(query);
 	        while(rs.next()) {
